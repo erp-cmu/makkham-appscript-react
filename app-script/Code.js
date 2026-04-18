@@ -1,0 +1,23 @@
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile("index")
+    .setTitle("My Dashboard")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function getSheetData() {
+
+  const spreadsheetId = "1nXNMFfmKbMEns0d6IKPEox-z5TTR4BnXNBGTXz-jizk";
+  const sheetName = "bnn_dried_bag";
+  const ss = SpreadsheetApp.openById(spreadsheetId);
+  const sheet = ss.getSheetByName(sheetName);
+
+  if (!sheet) {
+    throw new Error(`Sheet "${sheetName}" not found`);
+  }
+
+  const data = sheet.getDataRange().getDisplayValues();
+   return {
+    headers: data[0],
+    rows: data.slice(1)
+  };
+}
