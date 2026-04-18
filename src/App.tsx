@@ -5,7 +5,7 @@ function App() {
   const [result, setResult] = useState("");
   useEffect(() => {
     google.script.run
-      .withSuccessHandler((result) => {
+      .withSuccessHandler((result: string) => {
         setResult(result);
         console.log({ result });
       })
