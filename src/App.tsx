@@ -1,34 +1,31 @@
-import { useState, useEffect } from "react";
-import { useData } from "./hooks/useData";
-import * as aq from "arquero";
+import { useGoogleSheetData } from "./hooks/useGoogleSheetData";
+import "react-tabulator/lib/styles.css";
+import "react-tabulator/lib/css/tabulator_modern.min.css";
+import { ReactTabulator } from "react-tabulator";
 function App() {
-  const { data, isLoading, error } = useData();
-  // useEffect(() => {
-  //   google.script.run
-  //     .withSuccessHandler((result: string) => {
-  //       setResult(result);
-  //       console.log({ result });
-  //     })
-  //     .getAllSheetsData();
-  // }, []);
-  useEffect(() => {
-    const dt = aq.table({
-      city: ["Seattle", "Chicago", "San Francisco"],
-      sun_hours: [157, 120, 205],
-    });
+  const { data, isLoading, error } = useGoogleSheetData();
 
-    // 2. Transform the data: Filter and Derive
-    const result = dt
-      .derive({ sun_hours: (d) => d.sun_hours + 10 }) // Add 10 to sun hours
-      .filter((d) => d.sun_hours > 150); // Keep only if > 150
-
-    // 3. Print the resulting table
-    result.print();
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (!data) {
+    return <div>No data available</div>;
+  }
+  const dataTable = data["bnn_dried_bag"].objects();
+  console.log(dataTable);
+  const columns = Object.keys(dataTable[0]).map((key) => ({
+    title: key,
+    field: key,
+  }));
   return (
     <>
-      <h1>My Dashboard</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <h1>Dashboard</h1>
+      {/* <pre>{JSON.stringify(data, null, "2)}</pre> */}
+      <ReactTabulator
+        data={dataTable}
+        columns={columns}
+        options={{ layout: "fitColumns" }}
+      />
     </>
   );
 }

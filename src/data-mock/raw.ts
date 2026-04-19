@@ -1,4 +1,4 @@
-export const allData = {
+export const serverRawData = {
   lot_number_product: {
     rows: [
       ["001/26", "2/25/2026"],
@@ -5313,3 +5313,5 @@ export const allData = {
     ],
   },
 };
+
+export type ServerRawData = typeof serverRawData;
