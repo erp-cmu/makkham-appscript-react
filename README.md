@@ -53,3 +53,7 @@ Push to Google Apps Script:
 ```bash
 npx clasp push
 ```
+
+# Test
+
+`https://script.google.com/macros/s/AKfycby_9iwf45mA-AVPhS5r2pQQ8FFcIi4SRAUWrI99XZNe/dev`
