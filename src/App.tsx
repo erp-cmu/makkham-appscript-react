@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
-import "./App.css";
-
+import { useData } from "./hooks/useData";
 function App() {
-  const [result, setResult] = useState("");
-  useEffect(() => {
-    google.script.run
-      .withSuccessHandler((result: string) => {
-        setResult(result);
-        console.log({ result });
-      })
-      .getAllSheetsData();
-  }, []);
+  const { data, isLoading, error } = useData();
+  // useEffect(() => {
+  //   google.script.run
+  //     .withSuccessHandler((result: string) => {
+  //       setResult(result);
+  //       console.log({ result });
+  //     })
+  //     .getAllSheetsData();
+  // }, []);
   return (
     <>
       <h1>My Dashboard</h1>
-      <pre>{JSON.stringify(result, null, 2)}</pre>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </>
   );
 }
