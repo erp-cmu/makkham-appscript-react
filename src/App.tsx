@@ -9,7 +9,7 @@ function App() {
         setResult(result);
         console.log({ result });
       })
-      .getSheetData();
+      .getAllSheetsData();
   }, []);
   return (
     <>
