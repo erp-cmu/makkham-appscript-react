@@ -1,14 +1,14 @@
-import { Line } from "react-chartjs-2";
 import {
-  Chart as ChartJS,
   CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LineElement,
   LinearScale,
   PointElement,
-  LineElement,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
 // 1. Register the components you need
 ChartJS.register(
@@ -24,12 +24,12 @@ ChartJS.register(
 const MinimalChart = () => {
   // 2. Define your data object
   const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
     datasets: [
       {
-        label: "Monthly Sales",
+        label: 'Monthly Sales',
         data: [12, 19, 3, 5, 2],
-        borderColor: "rgb(75, 192, 192)",
+        borderColor: 'rgb(75, 192, 192)',
         tension: 0.1,
       },
     ],
