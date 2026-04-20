@@ -3,6 +3,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import 'react-tabulator/lib/css/tabulator_modern.min.css';
 import 'react-tabulator/lib/styles.css';
+import 'sakura.css/css/sakura.css';
 
 import App from './App.tsx';
 import './global.css';

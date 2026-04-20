@@ -17,10 +17,18 @@ export function useRawData() {
       sheetNames.forEach((sheet) => {
         const d = transformToObjArray(data, sheet);
         const dt = aq.from(d);
-        dtObj[sheet] = dt;
+        // Change column to be unique
+        const colsChange = {} as Record<string, string>;
+        dt.columnNames().forEach((col) => {
+          colsChange[col] = `[${sheet}]_${col}`;
+        });
+        const dtRenamed = dt.rename(colsChange);
+        dtObj[sheet] = dtRenamed;
       });
+      // console.log({ dtObj });
       return dtObj;
     },
+    refetchInterval: false, // Disable automatic refetching
   });
 
   return {
