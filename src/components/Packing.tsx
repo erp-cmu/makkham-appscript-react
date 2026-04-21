@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 
 import {
   packingLedgerDateAtom,
@@ -11,7 +12,13 @@ import PackingProduct from './PackingProduct';
 function Packing() {
   const { isLoading, error } = useRawData();
   const { data: packingLedgerDateList } = usePackingLedgeDateList();
-  const [_, setPackingLedgerDate] = useAtom(packingLedgerDateAtom);
+  const [packingLedgerDate, setPackingLedgerDate] = useAtom(
+    packingLedgerDateAtom,
+  );
+
+  useEffect(() => {
+    setPackingLedgerDate(packingLedgerDateList[0] || '');
+  }, [packingLedgerDateList[0]]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -22,8 +29,12 @@ function Packing() {
 
   return (
     <>
-      <h1>Packing</h1>
-      <select onChange={(e) => setPackingLedgerDate(e.target.value)}>
+      <h1>Packing Date</h1>
+
+      <select
+        value={packingLedgerDate}
+        onChange={(e) => setPackingLedgerDate(e.target.value)}
+      >
         <option value="">All Dates</option>
         {packingLedgerDateList.map((date) => (
           <option key={date} value={date}>
@@ -31,7 +42,9 @@ function Packing() {
           </option>
         ))}
       </select>
+      <h2>Packing Products</h2>
       <PackingProduct />
+      <h2>Pass 1</h2>
       <PackingBnnPass1 />
     </>
   );
