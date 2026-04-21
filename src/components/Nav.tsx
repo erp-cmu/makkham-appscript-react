@@ -1,22 +1,21 @@
 import { atom, useAtom } from 'jotai';
 
+import styles from '../styles/nav.module.css';
+
 export const navAtom = atom('home');
 
 function Nav() {
   const [currentNav, setCurrentNav] = useAtom(navAtom);
 
   return (
-    <header className="app-topbar">
-      <nav className="main-nav" aria-label="Main navigation">
-        <div className="main-nav-brand">
-          <span className="main-nav-company">Makkham</span>
-          <span className="main-nav-tagline">Dashboard</span>
-        </div>
-        <ul className="main-nav-list">
-          <li>
+    <header>
+      <nav className={styles.mainNav}>
+        <span className={styles.navCompany}>Makkham</span>
+        <ul className={styles.navWrapper}>
+          <li className={styles.navItem}>
             <a
+              className={styles.navLink}
               href="#home"
-              className="main-nav-link"
               aria-current={currentNav === 'home' ? 'page' : undefined}
               onClick={(e) => {
                 e.preventDefault();
@@ -26,10 +25,10 @@ function Nav() {
               Home
             </a>
           </li>
-          <li>
+          <li className={styles.navItem}>
             <a
+              className={styles.navLink}
               href="#bnn_dried"
-              className="main-nav-link"
               aria-current={currentNav === 'bnn_dried' ? 'page' : undefined}
               onClick={(e) => {
                 e.preventDefault();
@@ -39,10 +38,10 @@ function Nav() {
               การตากแห้ง
             </a>
           </li>
-          <li>
+          <li className={styles.navItem}>
             <a
+              className={styles.navLink}
               href="#packing"
-              className="main-nav-link"
               aria-current={currentNav === 'packing' ? 'page' : undefined}
               onClick={(e) => {
                 e.preventDefault();

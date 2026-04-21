@@ -1,9 +1,12 @@
+import styles from '../styles/home.module.css';
+
 function Home() {
   return (
-    <section className="home-hero" aria-labelledby="home-hero-title">
-      <div className="home-hero-copy">
-        <p className="home-hero-kicker">Makkham</p>
-        <h1 id="home-hero-title">Dashboard</h1>
+    <section>
+      <div className={styles.hero}>
+        <div className={styles.textbox}>
+          <span>Welcome to Makkham Dashboard</span>
+        </div>
       </div>
     </section>
   );

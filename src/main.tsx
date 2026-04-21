@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'normalize.css/normalize.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import 'react-tabulator/lib/css/tabulator_modern.min.css';
