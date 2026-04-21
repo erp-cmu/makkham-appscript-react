@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { dateDriedAtom, useDateDriedList } from '../../hooks/useBnnDriedHooks';
 import BnnDriedBag from './BnnDriedBag';
 import BnnDriedBagPass1 from './BnnDriedBagPass1';
+import BnnDriedBagPass2 from './BnnDriedBagPass2';
 
 function BnnDried() {
   const [dateDried, setDateDried] = useAtom(dateDriedAtom);
@@ -27,9 +28,10 @@ function BnnDried() {
       </select>
       <h2>ถุงตากแห้ง</h2>
       <BnnDriedBag />
-
       <h2>การคัด 1</h2>
       <BnnDriedBagPass1 />
+      <h2>การคัด 2</h2>
+      <BnnDriedBagPass2 />
     </div>
   );
 }

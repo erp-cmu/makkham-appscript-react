@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 
-export const navAtom = atom('bnn_dried');
+export const navAtom = atom('home');
 
 function Nav() {
   const [currentNav, setCurrentNav] = useAtom(navAtom);
@@ -28,19 +28,6 @@ function Nav() {
           </li>
           <li>
             <a
-              href="#packing"
-              className="main-nav-link"
-              aria-current={currentNav === 'packing' ? 'page' : undefined}
-              onClick={(e) => {
-                e.preventDefault();
-                setCurrentNav('packing');
-              }}
-            >
-              Packing
-            </a>
-          </li>
-          <li>
-            <a
               href="#bnn_dried"
               className="main-nav-link"
               aria-current={currentNav === 'bnn_dried' ? 'page' : undefined}
@@ -49,7 +36,20 @@ function Nav() {
                 setCurrentNav('bnn_dried');
               }}
             >
-              BNN Dried
+              การตากแห้ง
+            </a>
+          </li>
+          <li>
+            <a
+              href="#packing"
+              className="main-nav-link"
+              aria-current={currentNav === 'packing' ? 'page' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentNav('packing');
+              }}
+            >
+              การบรรจุภัณฑ์
             </a>
           </li>
         </ul>

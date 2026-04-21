@@ -37,10 +37,10 @@ function BnnDriedBag() {
   ];
 
   const colTitle = {
-    '[packing_ledger]_date': 'วันที่',
-    '[bnn_pass_1_bag]_bag_id': 'Bag ID',
-    '[bnn_pass_1_item]_original_weight_pass_1': 'Original Weight Pass 1',
-    '[bnn_pass_1_bag]_weight_pass_1_remaining': 'Weight Pass 1 Remaining',
+    '[bnn_dried_bag]_date_dried': 'วันที่ตากแห้ง',
+    '[bnn_dried_bag]_bag_id': 'รหัสถุง',
+    lot_number_date: 'เลขที่ล็อต + วันที่',
+    '[bnn_dried_bag]_weight': 'นำ้หนัก',
   } as Record<string, string>;
 
   const columns: ColumnDefinition[] = columnsName.map((name) => ({
