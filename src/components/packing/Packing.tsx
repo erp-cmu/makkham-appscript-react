@@ -7,6 +7,7 @@ import {
 } from '../../hooks/usePackingHooks';
 import { useRawData } from '../../hooks/useRawData';
 import PackingBnnPass1 from './PackingBnnPass1';
+import PackingBnnPass2 from './PackingBnnPass2';
 import PackingProduct from './PackingProduct';
 
 function Packing() {
@@ -46,6 +47,8 @@ function Packing() {
       <PackingProduct />
       <h2>Pass 1</h2>
       <PackingBnnPass1 />
+      <h2>Pass 2</h2>
+      <PackingBnnPass2 />
     </>
   );
 }

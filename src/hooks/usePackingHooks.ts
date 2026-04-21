@@ -127,6 +127,53 @@ export function usePackingBnnPass1() {
         aq.op.parse_float(d['[bnn_pass_1_bag]_weight_pass_1_remaining']),
     });
 
+  // dt.print();
+  // console.log({ dt });
+  const dtFilt = packingLedgerDate
+    ? dt.filter(
+        aq.escape((d: any) => d['[packing_ledger]_date'] === packingLedgerDate),
+      )
+    : dt;
+  return {
+    data: dtFilt.objects(),
+  };
+}
+
+export function usePackingBnnPass2() {
+  const [packingLedgerDate, _] = useAtom(packingLedgerDateAtom);
+  const { data: rawData } = useRawData();
+  if (!rawData) {
+    return {
+      data: null,
+    };
+  }
+  const packingLedger = rawData['packing_ledger'];
+  const bnnPass2Item = rawData['bnn_pass_2_item'];
+  const bnnPass2Bag = rawData['bnn_pass_2_bag'];
+
+  // Bag 2
+  const dt = packingLedger
+    .join_left(bnnPass2Item, [
+      '[packing_ledger]_id',
+      '[bnn_pass_2_item]_packing_ledger',
+    ])
+    .join_left(bnnPass2Bag, [
+      '[bnn_pass_2_item]_bnn_pass_2_bag',
+      '[bnn_pass_2_bag]_id',
+    ])
+    .derive({
+      '[packing_ledger]_date': aq.escape((d: any) =>
+        formatDateTime(d['[packing_ledger]_date']),
+      ),
+      '[bnn_pass_2_bag]_date': aq.escape((d: any) =>
+        formatDateTime(d['[bnn_pass_2_bag]_date']),
+      ),
+      '[bnn_pass_2_item]_original_weight_pass_2': (d) =>
+        aq.op.parse_float(d['[bnn_pass_2_item]_original_weight_pass_2']),
+      '[bnn_pass_2_bag]_weight_pass_2_remaining': (d) =>
+        aq.op.parse_float(d['[bnn_pass_2_bag]_weight_pass_2_remaining']),
+    });
+
   dt.print();
   console.log({ dt });
   const dtFilt = packingLedgerDate

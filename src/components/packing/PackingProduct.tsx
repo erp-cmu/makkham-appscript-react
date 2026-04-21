@@ -41,6 +41,7 @@ function PackingProduct() {
     title: colTitle[name] || name,
     field: name,
     formatter: 'textarea',
+    bottomCalc: 'sum',
     resizable: true,
   }));
 
