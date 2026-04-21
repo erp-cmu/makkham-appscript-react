@@ -1,6 +1,6 @@
 import { type ColumnDefinition, ReactTabulator } from 'react-tabulator';
 
-import { usePackingBnnPass1 } from '../hooks/usePackingHooks';
+import { usePackingBnnPass1 } from '../../hooks/usePackingHooks';
 
 function PackingBnnPass1() {
   const { data } = usePackingBnnPass1();

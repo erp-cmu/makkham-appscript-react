@@ -1,6 +1,6 @@
 import { type ColumnDefinition, ReactTabulator } from 'react-tabulator';
 
-import { usePackingProduct } from '../hooks/usePackingHooks';
+import { usePackingProduct } from '../../hooks/usePackingHooks';
 
 function PackingProduct() {
   const { data } = usePackingProduct();

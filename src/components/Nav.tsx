@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 
-export const navAtom = atom('home');
+export const navAtom = atom('bnn_dried');
 
 function Nav() {
   const [currentNav, setCurrentNav] = useAtom(navAtom);
@@ -37,6 +37,19 @@ function Nav() {
               }}
             >
               Packing
+            </a>
+          </li>
+          <li>
+            <a
+              href="#bnn_dried"
+              className="main-nav-link"
+              aria-current={currentNav === 'bnn_dried' ? 'page' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentNav('bnn_dried');
+              }}
+            >
+              BNN Dried
             </a>
           </li>
         </ul>

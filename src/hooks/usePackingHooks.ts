@@ -1,7 +1,7 @@
 import * as aq from 'arquero';
-import dayjs from 'dayjs';
 import { atom, useAtom } from 'jotai';
 
+import { formatDate, formatDateTime } from '../util/date';
 import { useRawData } from './useRawData';
 
 export const packingLedgerDateAtom = atom<string>('');
@@ -137,14 +137,4 @@ export function usePackingBnnPass1() {
   return {
     data: dtFilt.objects(),
   };
-}
-
-function formatDate(dateStr: string) {
-  const d = dayjs(dateStr, 'MM/DD/YYYY');
-  return d.format('YYYY-MM-DD');
-}
-
-function formatDateTime(dateStr: string) {
-  const d = dayjs(dateStr, 'MM/DD/YYYY HH:mm:ss');
-  return d.format('YYYY-MM-DD');
 }

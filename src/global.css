@@ -8,6 +8,15 @@ body {
   padding-right: 20px;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
 :root {
   --nav-bg: linear-gradient(120deg, #f3fbf4 0%, #fff6e9 100%);
   --nav-border: #d7e5d6;

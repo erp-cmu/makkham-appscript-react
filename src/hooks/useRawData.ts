@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import * as aq from 'arquero';
 
 import { type SheetNames, sheetNames } from '../constants/sheets';
-import { type ServerRawData, serverRawData } from '../data-mock/raw';
+import { type ServerRawData, serverRawData } from '../dataMock/raw';
 
 export function useRawData() {
   const query = useQuery<

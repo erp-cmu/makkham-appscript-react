@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import {
   packingLedgerDateAtom,
   usePackingLedgeDateList,
-} from '../hooks/usePackingHooks';
-import { useRawData } from '../hooks/useRawData';
+} from '../../hooks/usePackingHooks';
+import { useRawData } from '../../hooks/useRawData';
 import PackingBnnPass1 from './PackingBnnPass1';
 import PackingProduct from './PackingProduct';
 
@@ -29,8 +29,8 @@ function Packing() {
 
   return (
     <>
-      <h1>Packing Date</h1>
-
+      <h1>การบรรจุภัณฑ์</h1>
+      <h6>Packing Date</h6>
       <select
         value={packingLedgerDate}
         onChange={(e) => setPackingLedgerDate(e.target.value)}

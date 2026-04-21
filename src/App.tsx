@@ -2,7 +2,8 @@ import { useAtom } from 'jotai';
 
 import Home from './components/Home';
 import Nav, { navAtom } from './components/Nav';
-import Packing from './components/Packing';
+import BnnDried from './components/bnnDried/BnnDried';
+import Packing from './components/packing/Packing';
 
 function App() {
   const [currentNav] = useAtom(navAtom);
@@ -14,6 +15,9 @@ function App() {
       </section>
       <section hidden={currentNav !== 'packing'}>
         <Packing />
+      </section>
+      <section hidden={currentNav !== 'bnn_dried'}>
+        <BnnDried />
       </section>
     </>
   );
