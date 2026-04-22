@@ -5,7 +5,8 @@ import { formatDate, formatDateTime } from '../util/date';
 import { useRawData } from './useRawData';
 
 export const dateDriedAtom = atom('');
-
+export const datePass1Atom = atom('');
+export const datePass2Atom = atom('');
 export function useDateDriedList() {
   const { data: rawData } = useRawData();
 
@@ -28,15 +29,7 @@ export function useDateDriedList() {
   };
 }
 
-export function useBnnDriedBag() {
-  const [dateDried, _] = useAtom(dateDriedAtom);
-  const { data: rawData } = useRawData();
-  if (!rawData) {
-    return {
-      data: null,
-    };
-  }
-
+function bnnBangJoin(rawData: Record<string, aq.ColumnTable>) {
   const bnn_dried_bag = rawData['bnn_dried_bag'];
   const bnn_pass_1_bag = rawData['bnn_pass_1_bag'];
   const bnn_pass_2_bag = rawData['bnn_pass_2_bag'];
@@ -66,11 +59,21 @@ export function useBnnDriedBag() {
       ),
     })
     .orderby(aq.desc('[bnn_dried_bag]_date_dried'));
-
   // dt.print();
   // console.log(dt.columnNames());
   // console.log({ dt });
+  return dt;
+}
 
+export function useBnnDriedBag() {
+  const [dateDried, _] = useAtom(dateDriedAtom);
+  const { data: rawData } = useRawData();
+  if (!rawData) {
+    return {
+      data: null,
+    };
+  }
+  const dt = bnnBangJoin(rawData);
   const dtFilt = dateDried
     ? dt.filter(
         aq.escape((d: any) => d['[bnn_dried_bag]_date_dried'] === dateDried),
