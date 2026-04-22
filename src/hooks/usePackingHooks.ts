@@ -174,8 +174,8 @@ export function usePackingBnnPass2() {
         aq.op.parse_float(d['[bnn_pass_2_bag]_weight_pass_2_remaining']),
     });
 
-  dt.print();
-  console.log({ dt });
+  // dt.print();
+  // console.log({ dt });
   const dtFilt = packingLedgerDate
     ? dt.filter(
         aq.escape((d: any) => d['[packing_ledger]_date'] === packingLedgerDate),

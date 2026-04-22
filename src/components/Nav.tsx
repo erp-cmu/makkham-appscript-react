@@ -15,21 +15,19 @@ function Nav() {
           <li className={styles.navItem}>
             <a
               className={styles.navLink}
-              href="#home"
-              aria-current={currentNav === 'home' ? 'page' : undefined}
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 setCurrentNav('home');
               }}
             >
-              Home
+              หน้าแรก
             </a>
           </li>
           <li className={styles.navItem}>
             <a
               className={styles.navLink}
-              href="#bnn_dried"
-              aria-current={currentNav === 'bnn_dried' ? 'page' : undefined}
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 setCurrentNav('bnn_dried');
@@ -38,11 +36,23 @@ function Nav() {
               การตากแห้ง
             </a>
           </li>
+
           <li className={styles.navItem}>
             <a
               className={styles.navLink}
-              href="#packing"
-              aria-current={currentNav === 'packing' ? 'page' : undefined}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentNav('bnn_pass_1');
+              }}
+            >
+              การคัดแยก 1
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
+              className={styles.navLink}
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 setCurrentNav('packing');

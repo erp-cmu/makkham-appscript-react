@@ -29,7 +29,29 @@ export function useDateDriedList() {
   };
 }
 
-function bnnBangJoin(rawData: Record<string, aq.ColumnTable>) {
+export function useDatePass1List() {
+  const { data: rawData } = useRawData();
+
+  if (!rawData) {
+    return { data: [] };
+  }
+  const bnn_pass_1_bag = rawData['bnn_pass_1_bag'];
+  const datePass1List = bnn_pass_1_bag
+    .derive({
+      '[bnn_pass_1_bag]_date': aq.escape((d: any) =>
+        formatDateTime(d['[bnn_pass_1_bag]_date']),
+      ),
+    })
+    .orderby(aq.desc('[bnn_pass_1_bag]_date'))
+    .select('[bnn_pass_1_bag]_date')
+    .dedupe()
+    .array('[bnn_pass_1_bag]_date') as string[];
+  return {
+    data: datePass1List,
+  };
+}
+
+function bnnBagJoin(rawData: Record<string, aq.ColumnTable>) {
   const bnn_dried_bag = rawData['bnn_dried_bag'];
   const bnn_pass_1_bag = rawData['bnn_pass_1_bag'];
   const bnn_pass_2_bag = rawData['bnn_pass_2_bag'];
@@ -57,6 +79,12 @@ function bnnBangJoin(rawData: Record<string, aq.ColumnTable>) {
           ? `${d['[lot_number_raw]_lot_number']} (${d['[lot_number_raw]_date']})`
           : '',
       ),
+      '[bnn_pass_1_bag]_date': aq.escape((d: any) =>
+        formatDateTime(d['[bnn_pass_1_bag]_date']),
+      ),
+      '[bnn_pass_2_bag]_date': aq.escape((d: any) =>
+        formatDateTime(d['[bnn_pass_2_bag]_date']),
+      ),
     })
     .orderby(aq.desc('[bnn_dried_bag]_date_dried'));
   // dt.print();
@@ -73,7 +101,7 @@ export function useBnnDriedBag() {
       data: null,
     };
   }
-  const dt = bnnBangJoin(rawData);
+  const dt = bnnBagJoin(rawData);
   const dtFilt = dateDried
     ? dt.filter(
         aq.escape((d: any) => d['[bnn_dried_bag]_date_dried'] === dateDried),
@@ -81,5 +109,38 @@ export function useBnnDriedBag() {
     : dt;
   return {
     data: dtFilt.objects(),
+  };
+}
+
+export function useBnnPass1() {
+  const [datePass1, _] = useAtom(datePass1Atom);
+  const { data: rawData } = useRawData();
+  if (!rawData) {
+    return {
+      data: null,
+    };
+  }
+  const dt = bnnBagJoin(rawData);
+
+  dt.print();
+  console.log({ dt });
+
+  // Filter out rows where '[bnn_pass_1_bag]_date' is null, undefined, or empty string
+  const dtNotNull = dt.filter(
+    (d) =>
+      d['[bnn_pass_1_bag]_date'] !== undefined &&
+      d['[bnn_pass_1_bag]_date'] !== null &&
+      d['[bnn_pass_1_bag]_date'] !== '',
+  );
+  dtNotNull.print();
+  console.log({ dtNotNull });
+
+  // Further filter the data based on the selected datePass1
+  const dtNotNullFilt = dtNotNull.filter(
+    aq.escape((d: any) => d['[bnn_pass_1_bag]_date'] === datePass1),
+  );
+
+  return {
+    data: dtNotNullFilt.objects(),
   };
 }
