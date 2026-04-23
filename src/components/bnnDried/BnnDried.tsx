@@ -26,11 +26,11 @@ function BnnDried() {
           </option>
         ))}
       </select>
-      <h2>ถุงตากแห้ง</h2>
+      <h2>รายการการตากแห้ง</h2>
       <BnnDriedBag />
-      <h2>การคัด 1</h2>
+      <h2>รายการการคัดแยก 1 ที่เกี่ยวข้อง</h2>
       <BnnDriedBagPass1 />
-      <h2>การคัด 2</h2>
+      <h2>รายการการคัดแยก 2 ที่เกี่ยวข้อง</h2>
       <BnnDriedBagPass2 />
     </div>
   );

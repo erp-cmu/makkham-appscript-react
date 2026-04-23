@@ -31,7 +31,7 @@ function Packing() {
   return (
     <>
       <h1>การบรรจุภัณฑ์</h1>
-      <h6>Packing Date</h6>
+      <h6>วันที่บรรจุ</h6>
       <select
         value={packingLedgerDate}
         onChange={(e) => setPackingLedgerDate(e.target.value)}
@@ -43,11 +43,11 @@ function Packing() {
           </option>
         ))}
       </select>
-      <h2>Packing Products</h2>
+      <h2>รายการสินค้าที่บรรจุ</h2>
       <PackingProduct />
-      <h2>Pass 1</h2>
+      <h2>รายการถุงคัดแยก 1</h2>
       <PackingBnnPass1 />
-      <h2>Pass 2</h2>
+      <h2>รายการถุงคัดแยก 2</h2>
       <PackingBnnPass2 />
     </>
   );

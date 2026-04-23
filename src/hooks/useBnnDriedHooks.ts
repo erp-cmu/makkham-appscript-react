@@ -51,6 +51,28 @@ export function useDatePass1List() {
   };
 }
 
+export function useDatePass2List() {
+  const { data: rawData } = useRawData();
+
+  if (!rawData) {
+    return { data: [] };
+  }
+  const bnn_pass_2_bag = rawData['bnn_pass_2_bag'];
+  const datePass2List = bnn_pass_2_bag
+    .derive({
+      '[bnn_pass_2_bag]_date': aq.escape((d: any) =>
+        formatDateTime(d['[bnn_pass_2_bag]_date']),
+      ),
+    })
+    .orderby(aq.desc('[bnn_pass_2_bag]_date'))
+    .select('[bnn_pass_2_bag]_date')
+    .dedupe()
+    .array('[bnn_pass_2_bag]_date') as string[];
+  return {
+    data: datePass2List,
+  };
+}
+
 function bnnBagJoin(rawData: Record<string, aq.ColumnTable>) {
   const bnn_dried_bag = rawData['bnn_dried_bag'];
   const bnn_pass_1_bag = rawData['bnn_pass_1_bag'];
@@ -58,11 +80,11 @@ function bnnBagJoin(rawData: Record<string, aq.ColumnTable>) {
   const lot_number_raw = rawData['lot_number_raw'];
 
   const dt = bnn_dried_bag
-    .join_left(bnn_pass_1_bag, [
+    .join_full(bnn_pass_1_bag, [
       '[bnn_dried_bag]_id',
       '[bnn_pass_1_bag]_bnn_dried_bag',
     ])
-    .join_left(bnn_pass_2_bag, [
+    .join_full(bnn_pass_2_bag, [
       '[bnn_pass_1_bag]_id',
       '[bnn_pass_2_bag]_bnn_pass_1_bag',
     ])
@@ -122,8 +144,8 @@ export function useBnnPass1() {
   }
   const dt = bnnBagJoin(rawData);
 
-  dt.print();
-  console.log({ dt });
+  // dt.print();
+  // console.log({ dt });
 
   // Filter out rows where '[bnn_pass_1_bag]_date' is null, undefined, or empty string
   const dtNotNull = dt.filter(
@@ -132,12 +154,45 @@ export function useBnnPass1() {
       d['[bnn_pass_1_bag]_date'] !== null &&
       d['[bnn_pass_1_bag]_date'] !== '',
   );
-  dtNotNull.print();
-  console.log({ dtNotNull });
+  // dtNotNull.print();
+  // console.log({ dtNotNull });
 
   // Further filter the data based on the selected datePass1
   const dtNotNullFilt = dtNotNull.filter(
     aq.escape((d: any) => d['[bnn_pass_1_bag]_date'] === datePass1),
+  );
+
+  return {
+    data: dtNotNullFilt.objects(),
+  };
+}
+
+export function useBnnPass2() {
+  const [datePass2, _] = useAtom(datePass2Atom);
+  const { data: rawData } = useRawData();
+  if (!rawData) {
+    return {
+      data: null,
+    };
+  }
+  const dt = bnnBagJoin(rawData);
+
+  // dt.print();
+  // console.log({ dt });
+
+  // Filter out rows where '[bnn_pass_2_bag]_date' is null, undefined, or empty string
+  const dtNotNull = dt.filter(
+    (d) =>
+      d['[bnn_pass_2_bag]_date'] !== undefined &&
+      d['[bnn_pass_2_bag]_date'] !== null &&
+      d['[bnn_pass_2_bag]_date'] !== '',
+  );
+  // dtNotNull.print();
+  // console.log({ dtNotNull });
+
+  // Further filter the data based on the selected datePass1
+  const dtNotNullFilt = dtNotNull.filter(
+    aq.escape((d: any) => d['[bnn_pass_2_bag]_date'] === datePass2),
   );
 
   return {

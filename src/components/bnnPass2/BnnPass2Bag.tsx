@@ -1,9 +1,9 @@
 import { type ColumnDefinition, ReactTabulator } from 'react-tabulator';
 
-import { useBnnPass1 } from '../../hooks/useBnnDriedHooks';
+import { useBnnPass2 } from '../../hooks/useBnnDriedHooks';
 
-function BnnPass1Bag() {
-  const { data } = useBnnPass1();
+function BnnPass2Bag() {
+  const { data } = useBnnPass2();
 
   const columnsName = [
     // '[bnn_dried_bag]_bag_id',
@@ -58,4 +58,4 @@ function BnnPass1Bag() {
 
   return <ReactTabulator data={data} columns={columns} layout="fitColumns" />;
 }
-export default BnnPass1Bag;
+export default BnnPass2Bag;

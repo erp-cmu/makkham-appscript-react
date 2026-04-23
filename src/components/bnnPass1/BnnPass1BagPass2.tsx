@@ -1,12 +1,12 @@
 import { type ColumnDefinition, ReactTabulator } from 'react-tabulator';
 
-import { useBnnDriedBag } from '../../hooks/useBnnDriedHooks';
+import { useBnnPass1 } from '../../hooks/useBnnDriedHooks';
 
-function BnnDriedBagPass2() {
-  const { data } = useBnnDriedBag();
+function BnnPass1BagPass2() {
+  const { data } = useBnnPass1();
 
   const columnsName = [
-    '[bnn_dried_bag]_bag_id',
+    // '[bnn_dried_bag]_bag_id',
     '[bnn_pass_1_bag]_bag_id',
     '[bnn_pass_2_bag]_bag_id',
     '[bnn_pass_2_bag]_original_weight_to_fix',
@@ -37,7 +37,6 @@ function BnnDriedBagPass2() {
   ];
 
   const colTitle = {
-    '[bnn_dried_bag]_bag_id': 'รหัสถุงตากแห้ง',
     '[bnn_pass_1_bag]_bag_id': 'รหัสถุงคัด 1',
     '[bnn_pass_2_bag]_bag_id': 'รหัสถุงคัด 2',
     '[bnn_pass_2_bag]_original_weight_to_fix': 'น้ำหนักที่ต้องซ่อม',
@@ -57,4 +56,4 @@ function BnnDriedBagPass2() {
 
   return <ReactTabulator data={data} columns={columns} layout="fitColumns" />;
 }
-export default BnnDriedBagPass2;
+export default BnnPass1BagPass2;

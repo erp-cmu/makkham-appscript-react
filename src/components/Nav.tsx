@@ -36,7 +36,6 @@ function Nav() {
               การตากแห้ง
             </a>
           </li>
-
           <li className={styles.navItem}>
             <a
               className={styles.navLink}
@@ -47,6 +46,18 @@ function Nav() {
               }}
             >
               การคัดแยก 1
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
+              className={styles.navLink}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentNav('bnn_pass_2');
+              }}
+            >
+              การคัดแยก 2
             </a>
           </li>
           <li className={styles.navItem}>
