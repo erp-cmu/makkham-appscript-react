@@ -1,7 +1,7 @@
 import * as aq from 'arquero';
 import { atom, useAtom } from 'jotai';
 
-import { formatDate, formatDateTime } from '../util/date';
+import { formatDateTime } from '../util/date';
 import { useRawData } from './useRawData';
 
 export const packingLedgerDateAtom = atom<string>('');
@@ -56,7 +56,7 @@ export function usePackingProduct() {
         formatDateTime(d['[packing_ledger]_date']),
       ),
       '[lot_number_product]_date': aq.escape((d: any) =>
-        formatDate(d['[lot_number_product]_date']),
+        formatDateTime(d['[lot_number_product]_date']),
       ),
       product_id_name: aq.escape((d: any) =>
         d['[product]_id'] ? `${d['[product]_id']}: ${d['[product]_name']}` : '',
@@ -116,7 +116,7 @@ export function usePackingBnnPass1() {
         formatDateTime(d['[bnn_pass_1_bag]_date']),
       ),
       '[bnn_dried_bag]_date_dried': aq.escape((d: any) =>
-        formatDate(d['[bnn_dried_bag]_date_dried']),
+        formatDateTime(d['[bnn_dried_bag]_date_dried']),
       ),
       '[bnn_dried_bag]_date_transaction': aq.escape((d: any) =>
         formatDateTime(d['[bnn_dried_bag]_date_transaction']),

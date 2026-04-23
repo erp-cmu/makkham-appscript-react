@@ -1,7 +1,7 @@
 import * as aq from 'arquero';
 import { atom, useAtom } from 'jotai';
 
-import { formatDate, formatDateTime } from '../util/date';
+import { formatDateTime } from '../util/date';
 import { useRawData } from './useRawData';
 
 export const dateDriedAtom = atom('');
@@ -161,7 +161,7 @@ export function useBnnPass1() {
   // );
 
   const dtNotNull = dt.filter(
-    aq.escape((d: any) => !Boolean(d['[bnn_pass_1_bag]_date'])),
+    aq.escape((d: any) => Boolean(d['[bnn_pass_1_bag]_date'])),
   );
   // dtNotNull.print();
   // console.log({ dtNotNull });
