@@ -148,11 +148,20 @@ export function useBnnPass1() {
   // console.log({ dt });
 
   // Filter out rows where '[bnn_pass_1_bag]_date' is null, undefined, or empty string
+
+  // I got error "void0 is not defined" when I used "d['[bnn_pass_1_bag]_date'] !== undefined" in production.
+  // This is due to the GAS engine striping out space from "void 0" to "void0" and then it is not defined.
+  // So I change the condition to use Boolean() to check if the value is truthy or falsy.
+
+  // const dtNotNull = dt.filter(
+  //   (d) =>
+  //     d['[bnn_pass_1_bag]_date'] !== undefined &&
+  //     d['[bnn_pass_1_bag]_date'] !== null &&
+  //     d['[bnn_pass_1_bag]_date'] !== '',
+  // );
+
   const dtNotNull = dt.filter(
-    (d) =>
-      d['[bnn_pass_1_bag]_date'] !== undefined &&
-      d['[bnn_pass_1_bag]_date'] !== null &&
-      d['[bnn_pass_1_bag]_date'] !== '',
+    aq.escape((d: any) => !Boolean(d['[bnn_pass_1_bag]_date'])),
   );
   // dtNotNull.print();
   // console.log({ dtNotNull });
@@ -181,16 +190,26 @@ export function useBnnPass2() {
   // console.log({ dt });
 
   // Filter out rows where '[bnn_pass_2_bag]_date' is null, undefined, or empty string
+
+  // I got error "void0 is not defined" when I used "d['[bnn_pass_1_bag]_date'] !== undefined" in production.
+  // This is due to the GAS engine striping out space from "void 0" to "void0" and then it is not defined.
+  // So I change the condition to use Boolean() to check if the value is truthy or falsy.
+
+  // const dtNotNull = dt.filter(
+  //   (d) =>
+  //     d['[bnn_pass_2_bag]_date'] !== undefined &&
+  //     d['[bnn_pass_2_bag]_date'] !== null &&
+  //     d['[bnn_pass_2_bag]_date'] !== '',
+  // );
+
   const dtNotNull = dt.filter(
-    (d) =>
-      d['[bnn_pass_2_bag]_date'] !== undefined &&
-      d['[bnn_pass_2_bag]_date'] !== null &&
-      d['[bnn_pass_2_bag]_date'] !== '',
+    aq.escape((d: any) => Boolean(d['[bnn_pass_2_bag]_date'])),
   );
+
   // dtNotNull.print();
   // console.log({ dtNotNull });
 
-  // Further filter the data based on the selected datePass1
+  // Further filter the data based on the selected datePass2
   const dtNotNullFilt = dtNotNull.filter(
     aq.escape((d: any) => d['[bnn_pass_2_bag]_date'] === datePass2),
   );

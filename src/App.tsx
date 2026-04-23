@@ -15,8 +15,8 @@ function App() {
       <section hidden={currentNav !== 'home'}>
         <Home />
       </section>
-      <section hidden={currentNav !== 'packing'}>
-        <Packing />
+      <section hidden={currentNav !== 'bnn_dried'}>
+        <BnnDried />
       </section>
       <section hidden={currentNav !== 'bnn_pass_1'}>
         <BnnPass1 />
@@ -24,8 +24,8 @@ function App() {
       <section hidden={currentNav !== 'bnn_pass_2'}>
         <BnnPass2 />
       </section>
-      <section hidden={currentNav !== 'bnn_dried'}>
-        <BnnDried />
+      <section hidden={currentNav !== 'packing'}>
+        <Packing />
       </section>
     </>
   );

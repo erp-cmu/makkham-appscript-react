@@ -13,6 +13,7 @@ export function useRawData() {
     queryKey: ['sheetsData'],
     queryFn: fetchData,
     select: (data: ServerRawData) => {
+      // console.log({ data });
       const dtObj = {} as Record<SheetNames, aq.ColumnTable>;
       sheetNames.forEach((sheet) => {
         const d = transformToObjArray(data, sheet);
